@@ -1,0 +1,38 @@
+{% extends "base.html" %} {% block start %}
+
+<h2>This is a Home page</h2>
+
+<a href="/about/">About</a> | <a href="/contact/">Contact</a>
+
+<table class="container">
+  <tr>
+    <th>S.No</th>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Can Vote</th>
+  </tr>
+  {% for people in peoples %}
+  <tr>
+    <td>{{forloop.counter}} {{text|truncatechars:2}}</td>
+    <td>{{people.name}}</td>
+    <td>{{people.age}}</td>
+    {% if people.age >= 18 %}
+    <td>👍</td>
+    {% else %}
+    <td style="background: red">👎</td>
+    {% endif%}
+  </tr>
+  {% endfor %}
+</table>
+
+{{text|truncatechars:50}}
+
+<p>
+  {% if "cucumber" in vegetables %}
+  <b>Yes Cucumber is available</b>
+  {% elif "Tomato" in vegetables %}
+  <b>Yes Tomato available</b>
+  {% endif %}
+</p>
+
+{% endblock %}
